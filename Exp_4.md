@@ -43,6 +43,5 @@ Authentication Results: Look for headers like Authentication-Results. Modern ema
 IP Address and Server Path: Analyze the Received headers. These headers form a chain, showing the path the email took from the sending server to your mail server. Check the IP address of the first "Received" header. You can use an IP lookup tool to see if the IP's geographic location or ISP matches the supposed sender. An email from a U.S. company with an IP address from a different country is highly suspicious.
 
 Header Inconsistencies: Look for unusual headers, multiple headers of the same type (e.g., two "Message-ID" headers), or illogical timestamps. Legitimate email clients generate clean, predictable headers. Sloppy or malformed headers often indicate a manual or scripted attempt to forge an email.
-
-![alt text](<screenshorts/Exp_4/Screenshot (23).png>)
 Sources
+![alt text](<screenshorts/Exp_4/Screenshot (23).png>)
