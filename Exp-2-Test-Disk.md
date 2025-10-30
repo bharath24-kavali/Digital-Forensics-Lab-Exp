@@ -1,47 +1,65 @@
-# Exprement_2: Recover deleted or damaged files from a storage device using Test Disk  
-## Aim and Description
-The primary aim of TestDisk is to address structural damage to a storage device. This includes repairing corrupted partition tables, restoring deleted partitions, and making non-booting disks bootable again. While it has an "undelete" function for specific file systems, its strength lies in fixing the underlying file system structure, which can, in turn, make lost files accessible again.
-![alt text](<screenshorts/Screenshot (2).png>)
+# Experiment 2: Recover Deleted or Damaged Files from a Storage Device Using TestDisk
 
-## Tools and Equipment
-Computer: A functioning computer to run the TestDisk software.
-![alt text](<screenshorts/Screenshot (9).png>)
-Target Storage Device: The hard drive, USB drive, or memory card that has the lost or damaged data.
+## Aim
+To recover lost partitions and deleted files using TestDisk.
 
-TestDisk: The free, open-source software, available for multiple operating systems like Windows, Linux, and macOS.
+## Requirements
+- TestDisk
+- Windows Operating System
 
-Wri![alt text](<screenshorts/Screenshot (5).png>)te-blocker (Optional but Recommended): A hardware or software write-blocker to prevent any accidental writes to the target device during the recovery process. This is crucial for forensic or sensitive data recovery.
+## Description
+- TestDisk recovers lost or deleted partitions by scanning storage devices to locate and rebuild partition tables, supporting formats like FAT, NTFS, ext2/ext3/ext4, and GPT.
+- It repairs corrupted filesystems, such as fixing FAT/NTFS boot sectors or rebuilding MBR, enabling non-booting disks to become bootable again.
+- TestDisk includes PhotoRec, a file carving tool that recovers unfragmented files from various storage devices by identifying file signatures, independent of the filesystem.
 
-External Storage Device: A separate drive with enough free space to save the recovered files. Never save recovered files to the same drive you are recovering from, as this can overwrite the data you are trying to restore.
+## Steps
 
-## Procedure
-The TestDisk process is text-based and requires careful navigation using arrow keys.
+### Step-1
+Launch the TestDisk tool and in the terminal window, select “Create” to make a new log file and press Enter.
 
-Launch TestDisk: Run the testdisk_win.exe (on Windows) or testdisk (on Linux/macOS) as an administrator.
-![alt text](<screenshorts/Screenshot (11).png>)
-Create Log File: Choose "Create" to create a log file of the recovery process. This is important for documentation and troubleshooting.
-![alt text](<screenshorts/Screenshot (6).png>)
-Select the Disk: From the list of connected storage devices, select the one you want to recover data from. Use the disk size and model to ensure you've picked the correct one. Press Proceed.
+![(images/step1.png)](https://github.com/Krishnabhargav08/DIGITAL-FORENSICS-LAB-EXERCISES/blob/16b1147bcb109484f40eeb2ca02cfa07e0376c71/images/Ex-2%20im1.png)
 
-Choose Partition Table Type: TestDisk will try to auto-detect the partition table type (e.g., Intel/PC, EFI GPT). The default option is usually the correct one. Press Enter.
+### Step-2
+TestDisk will list available disks (HDDs, SSDs, USB drives). Use the arrow keys to highlight the disk you want to analyze and Press Enter.
 
-Analyze the Partition Structure: Select the Analyze option and press Enter to check the current partition structure.
+![(images/step2.png)](https://github.com/Krishnabhargav08/DIGITAL-FORENSICS-LAB-EXERCISES/blob/16b1147bcb109484f40eeb2ca02cfa07e0376c71/images/Ex-2%20im2.png)
 
-Quick Search: Choose Quick Search to have TestDisk scan for lost or deleted partitions. If the lost partition is found, it will be listed. You can highlight it and press P to view the files within it to confirm it's the correct partition.
-![alt text](<screenshorts/Screenshot (10).png>)
+### Step-3
+TestDisk usually auto-detects the partition table (Intel/PC, EFI GPT, Mac, etc.). Verify and press Enter.
 
-Deeper Search: If the Quick Search doesn't find the partition, select Deeper Search for a more thorough scan of the entire disk.
-![alt text](<screenshorts/Screenshot (10).png>)
-Undelete Files: Once the correct partition is selected, you can often navigate to the Undelete option. TestDisk will list recoverable files, often marked in red.
+![(images/step3.png)](https://github.com/Krishnabhargav08/DIGITAL-FORENSICS-LAB-EXERCISES/blob/16b1147bcb109484f40eeb2ca02cfa07e0376c71/images/Ex-2%20im3.png)
 
+### Step-4
+Analyze the current partition structure, from the terminal select Analyse and press enter.
 
-Copy Recovered Files: Use the arrow keys and the C key to select and copy the deleted files to your separate, external storage device.
+![(images/step4.png)](https://github.com/Krishnabhargav08/DIGITAL-FORENSICS-LAB-EXERCISES/blob/16b1147bcb109484f40eeb2ca02cfa07e0376c71/images/Ex-2%20im4.png)
 
-## Result
-Upon completion, you will have the recovered files on your destination drive. The success of the recovery depends on whether the original data has been overwritten since its deletion. Key results to note are:
-![alt text](<screenshorts/Screenshot (10).png>)
-File Recovery: Successfully recovered files will be copied to the specified destination.
+### Step-5
+After analysis you will be asked to perform Quick search select it and press Enter.
 
-Log File: A log file is created detailing the entire process, including the steps taken and any errors encountered. This is essential for documenting the recovery.
-![alt text](<screenshorts/Screenshot (7).png>)
-Repaired Partition: If you chose to repair a damaged partition, the partition table will be rewritten, making the disk accessible again.
+![(images/step5.png)](https://github.com/Krishnabhargav08/DIGITAL-FORENSICS-LAB-EXERCISES/blob/16b1147bcb109484f40eeb2ca02cfa07e0376c71/images/Ex-2%20im5.png)
+
+### Step-6
+TestDisk scans the disk and lists lost partitions.
+
+![(images/step6.png)](https://github.com/Krishnabhargav08/DIGITAL-FORENSICS-LAB-EXERCISES/blob/16b1147bcb109484f40eeb2ca02cfa07e0376c71/images/Ex-2%20im6.png)
+
+### Step-7
+Press “P” to view the list of files and “C” to copy the files.
+
+![(images/step7.png)](https://github.com/Krishnabhargav08/DIGITAL-FORENSICS-LAB-EXERCISES/blob/16b1147bcb109484f40eeb2ca02cfa07e0376c71/images/Ex-2%20im7.png)
+
+### Step-8
+If Quick Search does not find your partition/files, select “Deeper Search” and Enter. This takes longer but finds more recoverable partitions.
+
+![(images/step8.png)](https://github.com/Krishnabhargav08/DIGITAL-FORENSICS-LAB-EXERCISES/blob/16b1147bcb109484f40eeb2ca02cfa07e0376c71/images/Ex-2%20im8.png)
+
+### Step-9
+Once you are confident the partition is correct, select “write” and press Enter.
+
+![(images/step9.png)](https://github.com/Krishnabhargav08/DIGITAL-FORENSICS-LAB-EXERCISES/blob/16b1147bcb109484f40eeb2ca02cfa07e0376c71/images/Ex-2%20im9.png)
+
+### Step-10
+Confirm the operation by pressing “Y”. This will write partition table to your disk.
+
+![(images/step10.png)](https://github.com/Krishnabhargav08/DIGITAL-FORENSICS-LAB-EXERCISES/blob/16b1147bcb109484f40eeb2ca02cfa07e0376c71/images/Ex-2%20im10.png)
