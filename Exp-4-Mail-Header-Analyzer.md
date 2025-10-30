@@ -1,47 +1,51 @@
-# Exprement_4: Analyze Email Headers and Detect Email Spoofing using MHA (Mail Header Analyzer) 
-## Aim and Description
-The aim of using an email header analyzer like MHA (Mail Header Analyzer) is to decode the raw, complex text of an email header into a readable format. This helps in forensic analysis, network troubleshooting, and, most importantly, detecting email spoofing. Email spoofing is a technique used in phishing and spam where the sender forges the "From" address to make an email appear as if it came from a legitimate or trusted source. An analyzer simplifies the process by highlighting key information and identifying inconsistencies that a human might miss.
-![alt text](<screenshorts/Exp_4/Screenshot (20).png>)
+# Experiment 4: Analyze Email Headers and Detect Email Spoofing Using Mail Header Analyzer
 
-## Tools and Equipment
-Computer: A desktop or laptop with an internet connection.
+## Aim
+To analyze email headers and detect possible spoofing or malicious activity using Mail Header Analyzer.
 
-Email Client: An email client or webmail service (like Gmail, Outlook, etc.) to access the suspicious email.
+## Requirements
+- Mail Header Analyzer tool
+- Any email client (Gmail/Outlook/Yahoo) with suspicious email samples
 
-Mail Header Analyzer (MHA) Tool: This is typically a web-based tool. Examples include Google Admin Toolbox's Messageheader, MXToolbox Email Header Analyzer, or various open-source versions found on platforms like GitHub. These tools require no installation; you just need to copy and paste the email header.
-![alt text](<screenshorts/Exp_4/Screenshot (21).png>)
+## Description
+- A mail header analyzer tool is used to examine email headers, which contain metadata about an email’s origin, routing, and authentication details.
+- Mail header analyzers parse complex email headers per RFC 822 standards, transforming technical data into a human-readable format, detailing sender, recipient, subject, timestamps, and server paths.
 
-## Procedure
-The process is divided into two main parts: getting the full header and then analyzing it with the tool.
+## Steps
 
-Extract the Email Header: The first step is to get the full, raw header from the suspicious email. The method for this varies by email client:
+### Step-1
+First get the email header for that open the gmail, select the mail and click the three dots, choose the show original.
 
-Gmail: Open the email, click the three-dot menu next to the "Reply" button, and select Show original.
+![(images/step1.png)](https://github.com/Krishnabhargav08/DIGITAL-FORENSICS-LAB-EXERCISES/blob/a345dbee87f8098522dacc0210f61f9cac125193/images/Ex-4%20im1.png)
 
-Outlook: Double-click the email to open it in a new window, go to File > Properties, and look for the "Internet headers" field.
+### Step-2
+Click the show original then you will see the original message with sender and receiver details.
 
-Other clients: The option is usually labeled "View Source," "Show Original," or "View Full Headers."
+![(images/step2.png)](https://github.com/Krishnabhargav08/DIGITAL-FORENSICS-LAB-EXERCISES/blob/a345dbee87f8098522dacc0210f61f9cac125193/images/Ex-4%20im2.png)
 
-Copy the entire block of text from the header, including all the "Received," "Authentication-Results," and other lines.
+### Step-3
+Use Mail Header Analyzer tool for easy reading and analysis.
 
-Analyze with MHA:
+![(images/step3.png)](https://github.com/Krishnabhargav08/DIGITAL-FORENSICS-LAB-EXERCISES/blob/a345dbee87f8098522dacc0210f61f9cac125193/images/Ex-4%20im3.png)
 
-Open your chosen MHA tool in a web browser.
+### Step-4
+Copy and paste the entire header text and click Analyze header.
 
-Paste the copied email header into the designated text box.
+![(images/step4.png)](https://github.com/Krishnabhargav08/DIGITAL-FORENSICS-LAB-EXERCISES/blob/a345dbee87f8098522dacc0210f61f9cac125193/images/Ex-4%20im4.png)
 
-Click the Analyze or Parse button.
-![alt text](<screenshorts/Exp_4/Screenshot (22).png>)
-## Result
-The MHA tool will parse the raw header and present a clean, organized report. To detect spoofing, you should focus on the following key results:
+### Step-5
+Check for IP Addresses and Hostnames, use tools like WHOIS or online IP lookup services to identify the geographical location and ownership of the IP addresses found in the Received lines. Check if any IP addresses are suspicious or if the hostname does not match the expected sending server.
 
-From Address Mismatch: Compare the "From" address shown in your email client's display with the "Return-Path" or the first "Received" entry. A mismatch is a major red flag. For instance, if an email appears to be from "Microsoft" but the return path is malicioususer@attacker.com, it's a clear case of spoofing.
+![(images/step5.png)](https://github.com/Krishnabhargav08/DIGITAL-FORENSICS-LAB-EXERCISES/blob/a345dbee87f8098522dacc0210f61f9cac125193/images/Ex-4%20im5.png)
 
-Authentication Results: Look for headers like Authentication-Results. Modern email systems use protocols like SPF (Sender Policy Framework), DKIM (DomainKeys Identified Mail), and DMARC (Domain-based Message Authentication, Reporting, and Conformance) to verify a sender's legitimacy. If the SPF or DKIM checks Fail for a legitimate domain, it's a strong indicator of spoofing.
-![alt text](<screenshorts/Exp_4/Screenshot (22).png>)
+### Step-6
+Examine the SPF, DKIM, and DMARC Results.
 
-IP Address and Server Path: Analyze the Received headers. These headers form a chain, showing the path the email took from the sending server to your mail server. Check the IP address of the first "Received" header. You can use an IP lookup tool to see if the IP's geographic location or ISP matches the supposed sender. An email from a U.S. company with an IP address from a different country is highly suspicious.
+![(images/step6.png)](https://github.com/Krishnabhargav08/DIGITAL-FORENSICS-LAB-EXERCISES/blob/a345dbee87f8098522dacc0210f61f9cac125193/images/Ex-4%20im6.png)
 
-Header Inconsistencies: Look for unusual headers, multiple headers of the same type (e.g., two "Message-ID" headers), or illogical timestamps. Legitimate email clients generate clean, predictable headers. Sloppy or malformed headers often indicate a manual or scripted attempt to forge an email.
-Sources
-![alt text](<screenshorts/Exp_4/Screenshot (23).png>)
+- **SPF - Sender Policy Framework**: Checks if the sender’s server/IP is allowed for that domain.
+- **DKIM - DomainKeys Identified Mail**: Ensures email content wasn’t changed.
+
+![(images/step6.png)](https://github.com/Krishnabhargav08/DIGITAL-FORENSICS-LAB-EXERCISES/blob/a345dbee87f8098522dacc0210f61f9cac125193/images/Ex-4%20im7.png)
+
+![(images/step6.png)](https://github.com/Krishnabhargav08/DIGITAL-FORENSICS-LAB-EXERCISES/blob/a345dbee87f8098522dacc0210f61f9cac125193/images/Ex-4%20im8.png)
