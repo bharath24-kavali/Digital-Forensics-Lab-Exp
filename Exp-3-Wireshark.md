@@ -1,43 +1,61 @@
-# Exprement_3: Capture and Analyze Network Traffic using Wireshark
-## Aim and Description
-The primary aim of using Wireshark is to capture and analyze data packets traveling over a computer network. This process, often called packet sniffing or network analysis, allows you to inspect the raw data of network communication. It's used for troubleshooting network problems, analyzing application performance, and understanding network protocols. Wireshark is a free, open-source network protocol analyzer that's widely used by network administrators, security professionals, and developers.
-![alt text](<screenshorts/Exp_3/Screenshot (14).png>)
-## Tools and Equipment
-Computer: A desktop or laptop with a working network interface card (NIC).
+# Experiment 3: Password Capturing Using Wireshark
 
-Wireshark: The software application, which you can download for free from the official Wireshark website.
+## Aim
+To capture and analyze network packets using Wireshark.
 
-Network Connection: An active internet or local network connection (Ethernet or Wi-Fi).
+## Requirements
+- Wireshark
+- Windows Operating System
+- Active internet connection or local network traffic
 
-Target Network: The network you want to monitor. It could be your local network or a specific part of a larger network.
-![alt text](<screenshorts/Exp_3/Screenshot (15).png>)
-## Procedure
-Capturing and analyzing network traffic with Wireshark is a straightforward process, but it requires careful steps to ensure you capture the right data.
+## Description
+- Wireshark captures network packets in real-time or from saved files, allowing detailed inspection of protocols, packet contents, and network traffic patterns.
+- It supports thousands of network protocols, enabling analysis of everything from TCP/IP to VoIP, with detailed dissection of packet headers and payloads.
 
-Launch Wireshark: Open the Wireshark application. You'll be presented with a list of available network interfaces (e.g., Ethernet, Wi-Fi).
+## Steps
 
-Select an Interface: Choose the network interface you want to monitor. A live graph next to the interface name helps you identify the one with active traffic.
+### Step-1
+Open the Wireshark, there you will see the different types of networks. Select the network that is connected to your network, in this case it is Wi-Fi.
 
-Start Capturing: Double-click the desired interface or select it and click the Start capturing packets button (the fin icon) to begin the capture.
+![(images/step1.png)](https://github.com/Krishnabhargav08/DIGITAL-FORENSICS-LAB-EXERCISES/blob/81e4b3ac1b4592b23df85c0793e4efb92ddd373d/images/Ex-3%20im1.png)
 
-Generate Traffic: Perform the network activity you want to analyze. For example, open a web browser and visit a website, or run an application that communicates over the network.
+### Step-2
+On the top right corner you will see blue shark fin, just press the button and Wireshark begins capturing live traffic packets appear in real-time.
 
-Stop Capturing: Once you've captured enough data, click the Stop capturing packets button (the red square icon).
+![(images/step2.png)](https://github.com/Krishnabhargav08/DIGITAL-FORENSICS-LAB-EXERCISES/blob/81e4b3ac1b4592b23df85c0793e4efb92ddd373d/images/Ex-3%20im2.png)
 
-Analyze the Captured Data:
+### Step-3
+After starting the packet capturing we will go to the website and login the credential on that website.
 
-Filter Traffic: Use the filter bar at the top to narrow down the captured packets. For example, type http to see only HTTP traffic or ip.addr == 192.168.1.10 to view traffic to and from a specific IP address.
+![(images/step3.png)](https://github.com/Krishnabhargav08/DIGITAL-FORENSICS-LAB-EXERCISES/blob/81e4b3ac1b4592b23df85c0793e4efb92ddd373d/images/Ex-3%20im3.png)
 
-Inspect Packets: Click on a packet in the top pane to see its details in the middle and bottom panes. The middle pane shows the protocol layers (e.g., Ethernet, IP, TCP) and the bottom pane displays the raw hexadecimal and ASCII data of the packet.
-![alt text](<screenshorts/Exp_3/Screenshot (17).png>)
-## Result
-Upon completion, you will have a detailed record of the network communication that occurred during the capture period. Key results include:
+### Step-4
+Now go to Wireshark tool and apply some filters like HTTP to find the HTTP packets on the network.
 
-Packet List: A chronological list of all captured packets, showing the time, source and destination IP addresses, protocol, and a brief description.
+![(images/step4.png)](https://github.com/Krishnabhargav08/DIGITAL-FORENSICS-LAB-EXERCISES/blob/81e4b3ac1b4592b23df85c0793e4efb92ddd373d/images/Ex-3%20im4.png)
 
-Packet Details: A structured view of a selected packet, breaking it down by protocol layers, which helps you understand how the data is encapsulated.
+### Step-5
+So, there are some HTTP packets are captured but we 
+specifically looking for form data that the user submitted to the 
+website. We have main two methods used for submitting form 
+data from web pages like login forms to the server. They are ‘GET’ 
+& ‘POST’ 
 
-Packet Bytes: A raw view of the packet's data, which can be useful for low-level analysis or forensic examination.
-![alt text](<screenshorts/Exp_3/Screenshot (18).png>)
+### Step-6
+So, firstly for knowing the credential we use the first method and apply the filter for the GET methods.  
+http.request.method == “GET”
 
-Statistical Analysis: Wireshark also provides various statistics, such as protocol hierarchy, endpoint lists, and conversation graphs, to help you visualize and summarize the captured data.
+![(images/step5.png)](https://github.com/Krishnabhargav08/DIGITAL-FORENSICS-LAB-EXERCISES/blob/81e4b3ac1b4592b23df85c0793e4efb92ddd373d/images/Ex-3%20im5.png)
+
+### Step-7
+Now after checking the GET method if we didn’t find the form data, then we will try the POST method for that we will apply the filter on Wireshark.  
+
+http.request.method == “POST”
+
+As you can see the HTML form just click that form you can see the user credentials like username and password.  
+
+Form item: “uname” = “Krishna Bhargav”  
+
+Form item: “pass” = “KRISHNA”
+
+![(images/step6.png)](https://github.com/Krishnabhargav08/DIGITAL-FORENSICS-LAB-EXERCISES/blob/81e4b3ac1b4592b23df85c0793e4efb92ddd373d/images/Ex-3%20im6.png)
